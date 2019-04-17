@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #badd55;
+}
+.player {
+  position: relative;
+  background: rgb(50, 50, 50);
+  margin: 50px auto;
+  max-width: 700px;
+  overflow: hidden;
+}
+.player__video {
+  width: 100%;
+}
+
+.player__controls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+.player:hover .player__controls {
+  transform: translateY(100%) translateY(-4px);
+  transform: translateY(0);
+}
+.player:hover .progress {
+  height: 12px;
+}
+
+.player__button {
+  font-size: 15px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(240, 240, 240);
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  height: 25px;
+  min-width: 45px;
+  text-align: center;
+  cursor: pointer;
+}
+.progress {
+  width: 100%;
+  height: 5px;
+  cursor: w-resize;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.progress-filled {
+  height: 100%;
+  width: 0%;
+  background-color: yellow;
+}
+
+.player__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  /*width:100%;*/
+  height: 15px;
+  background: rgba(250, 250, 250, 0.9);
+  outline: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.player__slider:hover {
+  opacity: 1;
+}
+.player__slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width:25px;
+    height:25px;
+    background: yellow;
+}
