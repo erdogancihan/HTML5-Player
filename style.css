@@ -1,10 +1,18 @@
+:root {
+  --top: -5px;
+  --base: #ffc600;
+  --left: 50px;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: #badd55;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:14px;
 }
 .player {
   position: relative;
@@ -27,13 +35,24 @@ body {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  transform: translateY(100%) translateY(-4px);
 }
 .player:hover .player__controls {
-  transform: translateY(100%) translateY(-4px);
-  transform: translateY(0);
+  transform: translateY(-5px);
 }
 .player:hover .progress {
   height: 12px;
+  width: 88%;
+}
+.player:hover .player__time {
+  display: initial;
+}
+.button__group {
+  display: flex;
+}
+label {
+  color: rgb(240, 240, 240);
+  padding: 0 5px;
 }
 
 .player__button {
@@ -60,20 +79,40 @@ body {
   width: 0%;
   background-color: yellow;
 }
-
+.player__time {
+  width: 6%;
+  color: rgb(240, 240, 240);
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+.player__slider {
+  position: relative;
+}
+.player__slider::before {
+  content: attr(data-content);
+  color: rgb(240, 240, 240);
+  position: absolute;
+  top: var(--top);
+  left: calc( var(--left) + 10px);
+   width: 30px;
+  opacity: 0;
+}
+.button__group:hover .player__slider::before {
+  opacity: 1;
+}
+/*
 .player__slider {
   -webkit-appearance: none;
   appearance: none;
-  /*width:100%;*/
+
   height: 15px;
   background: rgba(250, 250, 250, 0.9);
   outline: none;
   opacity: 0.6;
   transition: opacity 0.3s;
 }
-.player__slider:hover {
-  opacity: 1;
-}
+
 .player__slider::-webkit-slider-thumb{
     -webkit-appearance: none;
     appearance: none;
@@ -81,3 +120,4 @@ body {
     height:25px;
     background: yellow;
 }
+*/

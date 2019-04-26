@@ -5,9 +5,13 @@ const skipButtons = player.querySelectorAll("[data-skip]");
 const rangeInputs = player.querySelectorAll("input[type='range']");
 const progress = player.querySelector(".progress");
 const progressBar = player.querySelector(".progress-filled");
+const playerCurrent=player.querySelector(".player__current");
+const playerDuration=player.querySelector(".player__duration");
 
-function togglePlay() {
+
+function togglePlay(e) {
   const method = video.paused ? "play" : "pause";
+  if(e.code&& e.code!=="Space")return
   video[method]();
 }
 function updateButton() {
@@ -18,12 +22,20 @@ function updateButton() {
 function skip() {
   video.currentTime += parseFloat(this.dataset.skip);
 }
-function handleRangeUpdate() {
+function handleRangeUpdate(e) {
   video[this.name] = this.value;
+  const root=document.documentElement;
+ this.dataset.content=this.value;
+// root.style.setProperty("--top",`${e.layerY}px`)
+ root.style.setProperty("--left",`${e.layerX}px`)
+
 }
 function handleProgress() {
   const percent = (video.currentTime / video.duration) * 100;
   progressBar.style.width = percent + "%";
+  playerCurrent.innerText=`${Math.round(video.currentTime/60)}:${Math.trunc(video.currentTime%60)} `;
+  playerDuration.innerText=`${Math.round(video.duration/60)}:${Math.trunc(video.duration%60)} `;
+  
 }
 function scrub(e) {
   const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
@@ -33,6 +45,8 @@ function scrub(e) {
 //Hook event listeners
 video.addEventListener("click", togglePlay);
 toggleButton.addEventListener("click", togglePlay);
+window.addEventListener("keydown", togglePlay);
+
 
 video.addEventListener("play", updateButton);
 video.addEventListener("pause", updateButton);
